@@ -8,14 +8,18 @@ import MobileMenu from "@modules/mobile-menu/templates"
 import DesktopSearchModal from "@modules/search/templates/desktop-search-modal"
 import clsx from "clsx"
 import Link from "next/link"
+import {default as NextLink }from 'next-intl/link'
+
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
+import { useLocale, useTranslations } from "next-intl"
 
 const Nav = () => {
   const pathname = usePathname()
   const [isHome, setIsHome] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
-
+  const locale = useLocale()
+  const t = useTranslations("Navbar")
   //useEffect that detects if window is scrolled > 5px on the Y axis
   useEffect(() => {
     if (isHome) {
@@ -36,7 +40,10 @@ const Nav = () => {
   }, [isHome])
 
   useEffect(() => {
-    pathname === "/" ? setIsHome(true) : setIsHome(false)
+    pathname === "/" || pathname === "/ar" ? setIsHome(true) : setIsHome(false)
+    console.log('====================================');
+    console.log(pathname);
+    console.log('====================================');
   }, [pathname])
 
   const { toggle } = useMobileMenu()
@@ -74,14 +81,23 @@ const Nav = () => {
 
           <div className="flex items-center h-full">
             <Link href="/" className="text-xl-semi uppercase">
-              Acme
+              modules/layout/templates/nav/index.tsx
             </Link>
           </div>
 
           <div className="flex items-center gap-x-6 h-full flex-1 basis-0 justify-end">
+          <div className="flex gap-4">
+            {locale === "en"?(
+              // working don't know why, please don't touch it future me
+              <NextLink href={`/${pathname}`} locale="ar" >ar</NextLink>
+              ):(
+              <NextLink href={`/${pathname.substring(3)}`} locale="en" >en</NextLink>
+
+            )}
+          </div>
             <div className="hidden small:flex items-center gap-x-6 h-full">
               {process.env.FEATURE_SEARCH_ENABLED && <DesktopSearchModal />}
-              <Link href="/account">Account</Link>
+              <Link href="/account">{t("account")}</Link>
             </div>
             <CartDropdown />
           </div>

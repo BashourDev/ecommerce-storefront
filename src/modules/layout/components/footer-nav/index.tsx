@@ -4,21 +4,22 @@ import clsx from "clsx"
 import { useCollections } from "medusa-react"
 import Link from "next/link"
 import CountrySelect from "../country-select"
+import { useTranslations } from "next-intl"
 
 const FooterNav = () => {
   const { collections } = useCollections()
-
+  const t = useTranslations("Footer");
   return (
     <div className="content-container flex flex-col gap-y-8 pt-16 pb-8">
       <div className="flex flex-col gap-y-6 xsmall:flex-row items-start justify-between">
         <div>
           <Link href="/" className="text-xl-semi uppercase">
-            Acme
+            modules/layout/components/footer-nav
           </Link>
         </div>
         <div className="text-small-regular grid grid-cols-2 gap-x-16">
           <div className="flex flex-col gap-y-2">
-            <span className="text-base-semi">Collections</span>
+            <span className="text-base-semi">{t("collection")}</span>
             <ul
               className={clsx("grid grid-cols-1 gap-y-2", {
                 "grid-cols-2": (collections?.length || 0) > 4,
@@ -31,7 +32,7 @@ const FooterNav = () => {
               ))}
             </ul>
           </div>
-          <div className="flex flex-col gap-y-2">
+          {/* <div className="flex flex-col gap-y-2">
             <span className="text-base-semi">Medusa</span>
             <ul className="grid grid-cols-1 gap-y-2">
               <li>
@@ -62,7 +63,7 @@ const FooterNav = () => {
                 </a>
               </li>
             </ul>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="flex flex-col-reverse gap-y-4 justify-center xsmall:items-center xsmall:flex-row xsmall:items-end xsmall:justify-between">

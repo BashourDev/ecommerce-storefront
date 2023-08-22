@@ -8,6 +8,7 @@ import ProductPreview from "@modules/products/components/product-preview"
 import SkeletonProductPreview from "@modules/skeletons/components/skeleton-product-preview"
 import clsx from "clsx"
 import { chunk } from "lodash"
+import { useTranslations } from "next-intl"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import React, { useState } from "react"
@@ -19,7 +20,7 @@ const DropdownMenu = () => {
     useNavigationCollections()
   const { data: products, isLoading: loadingProducts } =
     useFeaturedProductsQuery()
-
+  const t =useTranslations("Navbar")
   return (
     <div
       onMouseEnter={() => setOpen(true)}
@@ -36,7 +37,7 @@ const DropdownMenu = () => {
                 )}
                 onClick={() => push("/store")}
               >
-                Store
+                {t("store")}
               </Popover.Button>
             </Link>
 
@@ -58,7 +59,7 @@ const DropdownMenu = () => {
                   <div className="flex items-start content-container">
                     <div className="flex flex-col flex-1 max-w-[30%]">
                       <h3 className="text-base-semi text-gray-900 mb-4">
-                        Collections
+                        {t("StoreNavOverlay.collections")}
                       </h3>
                       <div className="flex items-start">
                         {collections &&

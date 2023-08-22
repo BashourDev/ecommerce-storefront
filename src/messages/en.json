@@ -1,0 +1,69 @@
+{
+  "Index": {
+    "exploreProducts": "Explore Products"
+  },
+  "Navbar": {
+    "store": "Store",
+    "account": "Account",
+    "myBag": "My Bag",
+    "bag": {
+      "title": "Shopping Bag",
+      "empty": "Your shopping bag is empty.",
+      "button": "EXPLORE PRODUCTS",
+      "quantity": "Quantity",
+      "remove": "Remove",
+      "subtotal": "Subtotal",
+      "taxes": "incl. taxes",
+      "goToBag": "Go to bag",
+      "goToAllProductsPage": "Go to all products page"
+    },
+    "StoreNavOverlay": {
+      "collections": "Collections"
+    }
+  },
+  "Hero": {
+    "title": "Summer styles are finally here",
+    "body": "This year, our new summer collection will shelter you from the harsh elements of a world that doesn't care if you live or die.",
+    "exploreProducts": "Explore Products"
+  },
+  "Footer": {
+    "collection": "Collections",
+    "shippingTo": "Shipping to"
+  },
+  "Login": {
+    "welcomeBack": "Welcome back",
+    "subtital": "Sign in to access an enhanced shopping experience.",
+    "emailLabel": "Email",
+    "emailRequired": "Email is required",
+    "passwordLabel": "Password",
+    "passwordRequired": "Password is required",
+    "authError": "These credentials do not match our records",
+    "enter": "Enter",
+    "notAMember": "Not a member?",
+    "joinUs": "Join us"
+  },
+  "Store": {
+    "collection": "Collections"
+  },
+  "Register": {
+    "title": "Become a store member",
+    "subtitle": "Create your Store Member profile, and get access to an enhanced shopping experience.",
+    "firstNameLabel": "First Name",
+    "firstNameRequired": "First name is required",
+    "lastNameLabel": "Last Name",
+    "lastNameRequired": "Last name is required",
+    "emailLabel": "Email",
+    "emailRequired": "Email is required",
+    "phoneLabel": "Phone",
+    "passwordLabel": "Password",
+    "passwordRequired": "Password is required",
+    "authError": "These credentials do not match our records",
+    "agreement": "By creating an account, you agree to Store's",
+    "privacyPolicy": "Privacy Policy",
+    "and": "and",
+    "termsOfUse": "Terms of Use",
+    "join": "Join",
+    "alreadyAMember": "Already a member?",
+    "signIn": "Sign in"
+  }
+}

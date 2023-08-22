@@ -1,0 +1,69 @@
+{
+  "Index": {
+    "exploreProducts": "تصفح المنتجات"
+  },
+  "Navbar": {
+    "store": "المتجر",
+    "account": "حساب",
+    "myBag": "حقيبتي",
+    "bag": {
+      "title": "حقيبة التسوق",
+      "empty": "حقيبة التسوق خالية",
+      "button": "تصفح المنتجات",
+      "quantity": "الكمية",
+      "remove": "إزالة",
+      "subtotal": "المجموع الجزئي",
+      "taxes": "متضمن الضريبة",
+      "goToBag": "اذهب إلى الحقيبة",
+      "goToAllProductsPage": "اذهب إلى صفحة المنتجات"
+    },
+    "StoreNavOverlay": {
+      "collections": "المجموعات"
+    }
+  },
+  "Hero": {
+    "title": "أنماط الصيف وصلت أخيرًا",
+    "body": "هذا العام، ستحميك مجموعتنا الصيفية الجديدة من العناصر القاسية لعالم لا يهتم إذا عشت أو مت.",
+    "exploreProducts": "تصفح المنتجات"
+  },
+  "Footer": {
+    "collection": "المجموعات",
+    "shippingTo": "شحن إلى"
+  },
+  "Login": {
+    "welcomeBack": "مرحبًا بعودتك",
+    "subtital": "قم بتسجيل الدخول للوصول إلى تجربة تسوق محسنة.",
+    "emailLabel": "البريد الإلكتروني",
+    "emailRequired": "البريد الإلكتروني مطلوب",
+    "passwordLabel": "كلمة المرور",
+    "passwordRequired": "كلمة المرور مطلوبة",
+    "authError": "المعلومات هذه لا تتطابق مع سجلاتنا",
+    "enter": "دخول",
+    "notAMember": "لست مستخدماً؟",
+    "joinUs": "انضم إلينا"
+  },
+  "Store": {
+    "collection": "المجموعات"
+  },
+  "Register": {
+    "title": "كن مستخدم في المتجر",
+    "subtitle": "قم بإنشاء ملف تعريف عضو المتجر الخاص بك، واحصل على تجربة تسوق محسنة.",
+    "firstNameLabel": "الاسم الأول",
+    "firstNameRequired": "الاسم الأول مطلوب",
+    "lastNameLabel": "الاسم الأخير",
+    "lastNameRequired": "الاسم الأخير مطلوب",
+    "emailLabel": "البريد الإلكتروني",
+    "emailRequired": "البريد الإلكتروني مطلوب",
+    "phoneLabel": "رقم الهاتف",
+    "passwordLabel": "كلمة المرور",
+    "passwordRequired": "كلمة المرور مطلوبة",
+    "authError": "المعلومات هذه لا تتطابق مع سجلاتنا",
+    "agreement": "من خلال إنشاء حساب، فإنك توافق على",
+    "privacyPolicy": " سياسة الخصوصية",
+    "and": "و",
+    "termsOfUse": "شروط الاستخدام",
+    "join": "انضم",
+    "alreadyAMember": "هل أنت مستخدم؟",
+    "signIn": "تسجيل دخول"
+  }
+}

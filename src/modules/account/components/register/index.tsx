@@ -3,6 +3,7 @@ import { LOGIN_VIEW, useAccount } from "@lib/context/account-context"
 import Button from "@modules/common/components/button"
 import Input from "@modules/common/components/input"
 import Spinner from "@modules/common/icons/spinner"
+import { useTranslations } from "next-intl"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
@@ -21,7 +22,7 @@ const Register = () => {
   const [_, setCurrentView] = loginView
   const [authError, setAuthError] = useState<string | undefined>(undefined)
   const router = useRouter()
-
+  const t = useTranslations("Register");
   const handleError = (e: Error) => {
     setAuthError("An error occured. Please try again.")
   }
@@ -49,41 +50,40 @@ const Register = () => {
           <Spinner size={24} />
         </div>
       )}
-      <h1 className="text-large-semi uppercase mb-6">Become a Acme Member</h1>
+      <h1 className="text-large-semi uppercase mb-6">{t("title")}</h1>
       <p className="text-center text-base-regular text-gray-700 mb-4">
-        Create your Acme Member profile, and get access to an enhanced shopping
-        experience.
+        {t("subtitle")}
       </p>
       <form className="w-full flex flex-col" onSubmit={onSubmit}>
         <div className="flex flex-col w-full gap-y-2">
           <Input
-            label="First name"
-            {...register("first_name", { required: "First name is required" })}
+            label={t("firstNameLabel")}
+            {...register("first_name", { required: t("firstNameRequired") })}
             autoComplete="given-name"
             errors={errors}
           />
           <Input
-            label="Last name"
-            {...register("last_name", { required: "Last name is required" })}
+            label={t("lastNameLabel")}
+            {...register("last_name", { required: t("lastNameRequired") })}
             autoComplete="family-name"
             errors={errors}
           />
           <Input
-            label="Email"
-            {...register("email", { required: "Email is required" })}
+            label={t("emailLabel")}
+            {...register("email", { required: t("emailRequired") })}
             autoComplete="email"
             errors={errors}
           />
           <Input
-            label="Phone"
+            label={t("phoneLabel")}
             {...register("phone")}
             autoComplete="tel"
             errors={errors}
           />
           <Input
-            label="Password"
+            label={t("passwordLabel")}
             {...register("password", {
-              required: "Password is required",
+              required: t("passwordRequired"),
             })}
             type="password"
             autoComplete="new-password"
@@ -93,30 +93,30 @@ const Register = () => {
         {authError && (
           <div>
             <span className="text-rose-500 w-full text-small-regular">
-              These credentials do not match our records
+              {t("authError")}
             </span>
           </div>
         )}
         <span className="text-center text-gray-700 text-small-regular mt-6">
-          By creating an account, you agree to Acme&apos;s{" "}
+          {t("agreement")} {" "}
           <Link href="/content/privacy-policy" className="underline">
-            Privacy Policy
-          </Link>{" "}
-          and{" "}
+            {t("privacyPolicy")}{" "}
+          </Link>
+          {t("and")}
           <Link href="/content/terms-of-use" className="underline">
-            Terms of Use
+            {t("termsOfUse")}
           </Link>
           .
         </span>
-        <Button className="mt-6">Join</Button>
+        <Button className="mt-6">{t("join")}</Button>
       </form>
       <span className="text-center text-gray-700 text-small-regular mt-6">
-        Already a member?{" "}
+        {t("alreadyAMember")}{" "}
         <button
           onClick={() => setCurrentView(LOGIN_VIEW.SIGN_IN)}
           className="underline"
         >
-          Sign in
+          {t("signIn")}
         </button>
         .
       </span>

@@ -4,6 +4,7 @@ import { Listbox, Transition } from "@headlessui/react"
 import { useStore } from "@lib/context/store-context"
 import useToggleState from "@lib/hooks/use-toggle-state"
 import { useRegions } from "medusa-react"
+import { useTranslations } from "next-intl"
 import { Fragment, useEffect, useMemo, useState } from "react"
 import ReactCountryFlag from "react-country-flag"
 
@@ -18,7 +19,7 @@ const CountrySelect = () => {
   const { regions } = useRegions()
   const [current, setCurrent] = useState<CountryOption | undefined>(undefined)
   const { state, open, close } = useToggleState()
-
+  const t = useTranslations("Footer");
   const options: CountryOption[] | undefined = useMemo(() => {
     return regions
       ?.map((r) => {
@@ -55,7 +56,7 @@ const CountrySelect = () => {
       >
         <Listbox.Button className="py-1 w-full">
           <div className="text-small-regular flex items-center gap-x-2 xsmall:justify-end">
-            <span>Shipping to:</span>
+            <span>{t("shippingTo")}:</span>
             {current && (
               <span className="text-small-semi flex items-center gap-x-2">
                 <ReactCountryFlag
@@ -80,7 +81,7 @@ const CountrySelect = () => {
             leaveTo="opacity-0"
           >
             <Listbox.Options
-              className="absolute -bottom-[calc(100%-36px)] left-0 xsmall:left-auto xsmall:right-0 max-h-[442px] overflow-y-scroll z-[900] bg-white drop-shadow-md text-small-regular uppercase text-black no-scrollbar"
+              className="absolute -bottom-[calc(100%-36px)]  right-0 xsmall:left-auto xsmall:right-0 max-h-[442px] overflow-y-scroll z-[900] bg-white drop-shadow-md text-small-regular uppercase text-black no-scrollbar"
               static
             >
               {options?.map((o, index) => {

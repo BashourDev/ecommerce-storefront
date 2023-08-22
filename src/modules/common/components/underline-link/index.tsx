@@ -1,4 +1,5 @@
 import ArrowRight from "@modules/common/icons/arrow-right"
+import { useLocale } from "next-intl"
 import Link from "next/link"
 
 type UnderlineLinkProps = {
@@ -6,7 +7,8 @@ type UnderlineLinkProps = {
   children?: React.ReactNode
 }
 
-const UnderlineLink = ({ href, children }: UnderlineLinkProps) => {
+const UnderlineLink = ({ href, children}: UnderlineLinkProps) => {
+  const locale = useLocale()
   return (
     <div className="flex items-start">
       <Link
@@ -17,7 +19,7 @@ const UnderlineLink = ({ href, children }: UnderlineLinkProps) => {
           <span>{children}</span>
           <ArrowRight
             size={20}
-            className="transition-all group-hover:ml-2 duration-300"
+            className={`transition-all group-hover:ml-2 duration-300 ${locale==="ar"&&"rotate-180"}`}
           />
         </>
       </Link>

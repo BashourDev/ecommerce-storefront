@@ -2,13 +2,14 @@ import Footer from "@modules/layout/templates/footer"
 import Nav from "@modules/layout/templates/nav"
 
 export default function PageLayout({
-  children,
+  children, params,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode,
+  params:any
 }) {
   return (
     <>
-      <Nav />
+      <Nav/>
       {children}
       <Footer />
     </>

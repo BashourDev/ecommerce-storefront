@@ -5,6 +5,7 @@ import { useUpdateMe } from "medusa-react"
 import React, { useEffect } from "react"
 import { useForm, useWatch } from "react-hook-form"
 import AccountInfo from "../account-info"
+import { useTranslations } from "next-intl"
 
 type MyInformationProps = {
   customer: Omit<Customer, "password_hash">
@@ -28,7 +29,7 @@ const ProfileName: React.FC<MyInformationProps> = ({ customer }) => {
       last_name: customer.last_name,
     },
   })
-
+  const t = useTranslations("AccountProfile.edit");
   const { refetchCustomer } = useAccount()
 
   const {
@@ -72,7 +73,7 @@ const ProfileName: React.FC<MyInformationProps> = ({ customer }) => {
   return (
     <form onSubmit={handleSubmit(updateName)} className="w-full">
       <AccountInfo
-        label="Name"
+        label={t("name")}
         currentInfo={`${customer.first_name} ${customer.last_name}`}
         isLoading={isLoading}
         isSuccess={isSuccess}
@@ -81,7 +82,7 @@ const ProfileName: React.FC<MyInformationProps> = ({ customer }) => {
       >
         <div className="grid grid-cols-2 gap-x-4">
           <Input
-            label="First name"
+            label={t("firstNameLabel")}
             {...register("first_name", {
               required: true,
             })}
@@ -89,7 +90,7 @@ const ProfileName: React.FC<MyInformationProps> = ({ customer }) => {
             errors={errors}
           />
           <Input
-            label="Last name"
+            label={t("lastNameLabel")}
             {...register("last_name", { required: true })}
             defaultValue={lastName}
             errors={errors}

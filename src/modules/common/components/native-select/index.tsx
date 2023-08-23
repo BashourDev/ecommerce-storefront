@@ -1,6 +1,7 @@
 import { ErrorMessage } from "@hookform/error-message"
 import ChevronDown from "@modules/common/icons/chevron-down"
 import clsx from "clsx"
+import { useLocale } from "next-intl"
 import {
   forwardRef,
   SelectHTMLAttributes,
@@ -31,7 +32,7 @@ const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
   ) => {
     const innerRef = useRef<HTMLSelectElement>(null)
     const [isPlaceholder, setIsPlaceholder] = useState(false)
-
+    const locale = useLocale();
     useImperativeHandle<HTMLSelectElement | null, HTMLSelectElement | null>(
       ref,
       () => innerRef.current
@@ -70,7 +71,7 @@ const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
             <option value="">{placeholder}</option>
             {children}
           </select>
-          <span className="absolute right-4 inset-y-0 flex items-center pointer-events-none">
+          <span className={`absolute ${locale === "en"?"right-4":"left-4"} inset-y-0 flex items-center pointer-events-none`}>
             <ChevronDown />
           </span>
         </div>

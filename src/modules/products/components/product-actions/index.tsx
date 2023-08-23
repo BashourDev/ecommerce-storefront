@@ -4,6 +4,7 @@ import { PricedProduct } from "@medusajs/medusa/dist/types/pricing"
 import Button from "@modules/common/components/button"
 import OptionSelect from "@modules/products/components/option-select"
 import clsx from "clsx"
+import { useLocale, useTranslations } from "next-intl"
 import Link from "next/link"
 import React, { useMemo } from "react"
 import { Product } from "types/medusa"
@@ -17,7 +18,8 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
     useProductActions()
 
   const price = useProductPrice({ id: product.id!, variantId: variant?.id })
-
+  const locale = useLocale()
+  const t = useTranslations("Product")
   const selectedPrice = useMemo(() => {
     const { variantPrice, cheapestPrice } = price
 
@@ -34,9 +36,9 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
           {product.collection.title}
         </Link>
       )}
-      <h3 className="text-xl-regular">{product.title}</h3>
+      <h3 className="text-xl-regular">{locale === "en"?product.title:product.metadata?.__arabic_title || product.title}</h3>
 
-      <p className="text-base-regular">{product.description}</p>
+      <p className="text-base-regular">{locale === "en"?product.description:product.metadata?.__arabic_description || product.description}</p>
 
       {product.variants.length > 1 && (
         <div className="my-8 flex flex-col gap-y-6">
@@ -68,7 +70,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
             {selectedPrice.price_type === "sale" && (
               <>
                 <p>
-                  <span className="text-gray-500">Original: </span>
+                  <span className="text-gray-500">{t("original")}: </span>
                   <span className="line-through">
                     {selectedPrice.original_price}
                   </span>
@@ -85,7 +87,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
       </div>
 
       <Button onClick={addToCart}>
-        {!inStock ? "Out of stock" : "Add to cart"}
+        {!inStock ? t("outOfStock") : t("addToCart")}
       </Button>
     </div>
   )

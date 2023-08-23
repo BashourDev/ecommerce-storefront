@@ -5,10 +5,11 @@ import Spinner from "@modules/common/icons/spinner"
 import { useCustomerOrders } from "medusa-react"
 import Link from "next/link"
 import OrderCard from "../order-card"
+import { useTranslations } from "next-intl"
 
 const OrderOverview = () => {
   const { orders, isLoading } = useCustomerOrders()
-
+  const t = useTranslations("AccountOrders");
   if (isLoading) {
     return (
       <div className="text-gray-900 w-full flex justify-center pt-12">
@@ -34,13 +35,13 @@ const OrderOverview = () => {
 
   return (
     <div className="w-full flex flex-col items-center gap-y-4">
-      <h2 className="text-large-semi">Nothing to see here</h2>
+      <h2 className="text-large-semi">{t("emptyMessage")}</h2>
       <p className="text-base-regular">
-        You don&apos;t have any orders yet, let us change that {":)"}
+        {t("emptySubMessage")} {":)"}
       </p>
       <div className="mt-4">
         <Link href="/" passHref>
-          <Button>Continue shopping</Button>
+          <Button>{t("continueShopping")}</Button>
         </Link>
       </div>
     </div>

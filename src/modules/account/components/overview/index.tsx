@@ -4,6 +4,7 @@ import MapPin from "@modules/common/icons/map-pin"
 import Package from "@modules/common/icons/package"
 import User from "@modules/common/icons/user"
 import { formatAmount } from "medusa-react"
+import { useLocale, useTranslations } from "next-intl"
 import Link from "next/link"
 
 type OverviewProps = {
@@ -12,11 +13,13 @@ type OverviewProps = {
 }
 
 const Overview = ({ orders, customer }: OverviewProps) => {
+  const locale = useLocale();
+  const t = useTranslations("AccountOverview")
   return (
     <div>
       <div className="small:hidden">
         <div className="text-xl-semi mb-4 px-8">
-          Hello {customer?.first_name}
+          {t("hello")} {customer?.first_name}
         </div>
         <div className="text-base-regular">
           <ul>
@@ -28,9 +31,9 @@ const Overview = ({ orders, customer }: OverviewProps) => {
                 <>
                   <div className="flex items-center gap-x-2">
                     <User size={16} />
-                    <span>Profile</span>
+                    <span>{t("profile")}</span>
                   </div>
-                  <ChevronDown className="transform -rotate-90" />
+                  <ChevronDown className={`transform ${locale === "en"?"-rotate-90":"rotate-90"}`} />
                 </>
               </Link>
             </li>
@@ -42,9 +45,9 @@ const Overview = ({ orders, customer }: OverviewProps) => {
                 <>
                   <div className="flex items-center gap-x-2">
                     <MapPin size={16} />
-                    <span>Addresses</span>
+                    <span>{t("addresses")}</span>
                   </div>
-                  <ChevronDown className="transform -rotate-90" />
+                  <ChevronDown className={`transform ${locale === "en"?"-rotate-90":"rotate-90"}`} />
                 </>
               </Link>
             </li>
@@ -56,9 +59,9 @@ const Overview = ({ orders, customer }: OverviewProps) => {
                 <>
                   <div className="flex items-center gap-x-2">
                     <Package size={16} />
-                    <span>Orders</span>
+                    <span>{t("orders")}</span>
                   </div>
-                  <ChevronDown className="transform -rotate-90" />
+                  <ChevronDown className={`transform ${locale === "en"?"-rotate-90":"rotate-90"}`} />
                 </>
               </Link>
             </li>
@@ -68,9 +71,9 @@ const Overview = ({ orders, customer }: OverviewProps) => {
 
       <div className="hidden small:block">
         <div className="text-xl-semi flex justify-between items-start mb-4">
-          <span>Hello {customer?.first_name}</span>
+          <span>{t("hello")} {customer?.first_name}</span>
           <span className="text-small-regular text-gray-700">
-            Signed in as:{" "}
+          {t("signedInAs")}:{" "}
             <span className="font-semibold">{customer?.email}</span>
           </span>
         </div>
@@ -78,25 +81,25 @@ const Overview = ({ orders, customer }: OverviewProps) => {
           <div className="flex flex-col gap-y-4 h-full col-span-1 row-span-2 flex-1">
             <div className="flex items-start gap-x-16 mb-6">
               <div className="flex flex-col gap-y-4">
-                <h3 className="text-large-semi">Profile</h3>
+                <h3 className="text-large-semi">{t("profile")}</h3>
                 <div className="flex items-end gap-x-2">
                   <span className="text-3xl-semi leading-none">
                     {getProfileCompletion(customer)}%
                   </span>
                   <span className="uppercase text-base-regular text-gray-500">
-                    Completed
+                  {t("completed")}
                   </span>
                 </div>
               </div>
 
               <div className="flex flex-col gap-y-4">
-                <h3 className="text-large-semi">Addresses</h3>
+                <h3 className="text-large-semi">{t("addresses")}</h3>
                 <div className="flex items-end gap-x-2">
                   <span className="text-3xl-semi leading-none">
                     {customer?.shipping_addresses?.length || 0}
                   </span>
                   <span className="uppercase text-base-regular text-gray-500">
-                    Saved
+                  {t("saved")}
                   </span>
                 </div>
               </div>
@@ -104,7 +107,7 @@ const Overview = ({ orders, customer }: OverviewProps) => {
 
             <div className="flex flex-col gap-y-4">
               <div className="flex items-center gap-x-2">
-                <h3 className="text-large-semi">Recent orders</h3>
+                <h3 className="text-large-semi">{t("recentOrders")}</h3>
               </div>
               <ul className="flex flex-col gap-y-4">
                 {orders ? (
@@ -114,12 +117,12 @@ const Overview = ({ orders, customer }: OverviewProps) => {
                         <Link href={`/order/details/${order.id}`}>
                           <div className="bg-gray-50 flex justify-between items-center p-4">
                             <div className="grid grid-cols-3 grid-rows-2 text-small-regular gap-x-4 flex-1">
-                              <span className="font-semibold">Date placed</span>
+                              <span className="font-semibold">{t("datePlaced")}</span>
                               <span className="font-semibold">
-                                Order number
+                              {t("orderNumber")}
                               </span>
                               <span className="font-semibold">
-                                Total amount
+                              {t("totalAmount")}
                               </span>
                               <span>
                                 {new Date(order.created_at).toDateString()}
@@ -138,9 +141,9 @@ const Overview = ({ orders, customer }: OverviewProps) => {
                               onClick={close}
                             >
                               <span className="sr-only">
-                                Go to order #{order.display_id}
+                              {t("goToOrder")} #{order.display_id}
                               </span>
-                              <ChevronDown className="-rotate-90" />
+                              <ChevronDown className={locale === "en"?"-rotate-90":"rotate-90"} />
                             </button>
                           </div>
                         </Link>
@@ -148,7 +151,7 @@ const Overview = ({ orders, customer }: OverviewProps) => {
                     )
                   })
                 ) : (
-                  <span>No recent orders</span>
+                  <span>{t("noRecentOrders")}</span>
                 )}
               </ul>
             </div>

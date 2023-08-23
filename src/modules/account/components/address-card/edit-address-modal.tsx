@@ -10,6 +10,7 @@ import Edit from "@modules/common/icons/edit"
 import Spinner from "@modules/common/icons/spinner"
 import Trash from "@modules/common/icons/trash"
 import clsx from "clsx"
+import { useTranslations } from "next-intl"
 import React, { useState } from "react"
 import { useForm } from "react-hook-form"
 
@@ -59,10 +60,10 @@ const EditAddress: React.FC<EditAddressProps> = ({
     },
   })
 
+  const t = useTranslations("AccountAddresses.modal")
   const submit = handleSubmit(async (data: FormValues) => {
     setSubmitting(true)
     setError(undefined)
-
     const payload = {
       first_name: data.first_name,
       last_name: data.last_name,
@@ -86,7 +87,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
       })
       .catch(() => {
         setSubmitting(false)
-        setError("Failed to update address, please try again.")
+        setError(t("failedToUpdateAddress"))
       })
   })
 
@@ -135,72 +136,72 @@ const EditAddress: React.FC<EditAddressProps> = ({
             onClick={open}
           >
             <Edit size={16} />
-            Edit
+            {t("editButton")}
           </button>
           <button
             className="text-small-regular text-gray-700 flex items-center gap-x-2"
             onClick={removeAddress}
           >
             <Trash />
-            Remove
+            {t("removeButton")}
           </button>
         </div>
       </div>
 
       <Modal isOpen={state} close={close}>
-        <Modal.Title>Edit address</Modal.Title>
+        <Modal.Title>{t("editAddress")}</Modal.Title>
         <Modal.Body>
           <div className="grid grid-cols-1 gap-y-2">
             <div className="grid grid-cols-2 gap-x-2">
               <Input
-                label="First name"
+                label={t("firstNameLabel")}
                 {...register("first_name", {
-                  required: "First name is required",
+                  required: t("firstNameRequired"),
                 })}
                 required
                 errors={errors}
                 autoComplete="given-name"
               />
               <Input
-                label="Last name"
+                label={t("lastNameLabel")}
                 {...register("last_name", {
-                  required: "Last name is required",
+                  required: t("lastNameRequired"),
                 })}
                 required
                 errors={errors}
                 autoComplete="family-name"
               />
             </div>
-            <Input label="Company" {...register("company")} errors={errors} />
+            <Input label={t("companyLabel")} {...register("company")} errors={errors} />
             <Input
-              label="Address"
+              label={t("addressLabel")}
               {...register("address_1", {
-                required: "Address is required",
+                required: t("addressRequired"),
               })}
               required
               errors={errors}
               autoComplete="address-line1"
             />
             <Input
-              label="Apartment, suite, etc."
+              label={t("address2Label")}
               {...register("address_2")}
               errors={errors}
               autoComplete="address-line2"
             />
             <div className="grid grid-cols-[144px_1fr] gap-x-2">
               <Input
-                label="Postal code"
+                label={t("postalCodeLabel")}
                 {...register("postal_code", {
-                  required: "Postal code is required",
+                  required: t("postalCodeRequired"),
                 })}
                 required
                 errors={errors}
                 autoComplete="postal-code"
               />
               <Input
-                label="City"
+                label={t("cityLabel")}
                 {...register("city", {
-                  required: "City is required",
+                  required: t("cityRequired"),
                 })}
                 errors={errors}
                 required
@@ -208,17 +209,18 @@ const EditAddress: React.FC<EditAddressProps> = ({
               />
             </div>
             <Input
-              label="Province / State"
+              label={t("provinceOrStateLabel")}
               {...register("province")}
               errors={errors}
               autoComplete="address-level1"
             />
             <CountrySelect
+              placeholder={t("countrySelectPlaceholder")}
               {...register("country_code", { required: true })}
               autoComplete="country"
             />
             <Input
-              label="Phone"
+              label={t("phoneLabel")}
               {...register("phone")}
               errors={errors}
               autoComplete="phone"
@@ -230,10 +232,10 @@ const EditAddress: React.FC<EditAddressProps> = ({
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={close}>
-            Cancel
+          {t("cancelButton")}
           </Button>
           <Button onClick={submit} disabled={submitting}>
-            Save
+          {t("saveButton")}
             {submitting && <Spinner />}
           </Button>
         </Modal.Footer>

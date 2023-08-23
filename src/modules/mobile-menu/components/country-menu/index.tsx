@@ -3,6 +3,7 @@ import { useStore } from "@lib/context/store-context"
 import useCountryOptions from "@lib/hooks/use-country-options"
 import ChevronDown from "@modules/common/icons/chevron-down"
 import X from "@modules/common/icons/x"
+import { useLocale, useTranslations } from "next-intl"
 import ReactCountryFlag from "react-country-flag"
 
 const CountryMenu = () => {
@@ -13,11 +14,12 @@ const CountryMenu = () => {
 
   const { setRegion } = useStore()
   const countryOptions = useCountryOptions()
-
+  const locale = useLocale()
   const handleSelectCountry = (regionId: string, countryCode: string) => {
     setRegion(regionId, countryCode)
     close()
   }
+  const t= useTranslations("Footer");
 
   return (
     <div className="flex flex-col flex-1">
@@ -27,11 +29,11 @@ const CountryMenu = () => {
             className="flex items-center gap-x-2"
             onClick={() => setScreen("main")}
           >
-            <ChevronDown className="rotate-90 text-gray-700" size={20} />
+            <ChevronDown className={`${locale === "en"?"rotate-90":"-rotate-90"} text-gray-700`} size={20} />
           </button>
         </div>
         <div>
-          <h1 className="text-large-regular">Shipping To</h1>
+          <h1 className="text-large-regular">{t("shippingTo")}</h1>
         </div>
         <div className="flex-1 basis-0 flex justify-end">
           <button onClick={close}>
@@ -54,7 +56,7 @@ const CountryMenu = () => {
                   <ReactCountryFlag svg countryCode={option.country} />
                   <span className="text-base-regular">{option.label}</span>
                 </div>
-                <ChevronDown size={16} className="-rotate-90" />
+                <ChevronDown size={16} className={locale === "en"?"-rotate-90":"rotate-90"} />
               </button>
             </li>
           ))}

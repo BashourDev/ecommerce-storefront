@@ -2,6 +2,7 @@ import { Order } from "@medusajs/medusa"
 import Button from "@modules/common/components/button"
 import Thumbnail from "@modules/products/components/thumbnail"
 import { formatAmount } from "medusa-react"
+import { useTranslations } from "next-intl"
 import Link from "next/link"
 import { useMemo } from "react"
 
@@ -15,7 +16,7 @@ const OrderCard = ({ order }: OrderCardProps) => {
       return acc + item.quantity
     }, 0)
   }, [order])
-
+  const t = useTranslations("AccountOrders")
   const numberOfProducts = useMemo(() => {
     return order.items.length
   }, [order])
@@ -35,7 +36,7 @@ const OrderCard = ({ order }: OrderCardProps) => {
           })}
         </span>
         <span className="pl-2">{`${numberOfLines} ${
-          numberOfLines > 1 ? "items" : "item"
+          numberOfLines > 1 ? t("items") : t("item")
         }`}</span>
       </div>
       <div className="grid grid-cols-2 small:grid-cols-4 gap-4 my-4">
@@ -60,13 +61,13 @@ const OrderCard = ({ order }: OrderCardProps) => {
             <span className="text-small-regular text-gray-700">
               + {numberOfLines - 4}
             </span>
-            <span className="text-small-regular text-gray-700">more</span>
+            <span className="text-small-regular text-gray-700">{t("more")}</span>
           </div>
         )}
       </div>
       <div className="flex justify-end">
         <Link href={`/order/details/${order.id}`}>
-          <Button variant="secondary">See details</Button>
+          <Button variant="secondary">{t("seeDetails")}</Button>
         </Link>
       </div>
     </div>

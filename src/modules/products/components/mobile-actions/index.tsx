@@ -10,6 +10,7 @@ import React, { Fragment, useMemo } from "react"
 import { Product } from "types/medusa"
 import OptionSelect from "../option-select"
 import { PricedProduct } from "@medusajs/medusa/dist/types/pricing"
+import { useTranslations } from "next-intl"
 
 type MobileActionsProps = {
   product: PricedProduct
@@ -27,7 +28,7 @@ const MobileActions: React.FC<MobileActionsProps> = ({ product, show }) => {
 
     return variantPrice || cheapestPrice || null
   }, [price])
-
+  const t = useTranslations("Product")
   return (
     <>
       <div
@@ -76,12 +77,12 @@ const MobileActions: React.FC<MobileActionsProps> = ({ product, show }) => {
                   <span>
                     {variant
                       ? Object.values(options).join(" / ")
-                      : "Select Options"}
+                      : t("selectOptions")}
                   </span>
                   <ChevronDown />
                 </div>
               </Button>
-              <Button onClick={addToCart}>{!inStock ? "Out of stock" : "Add to cart"}</Button>
+              <Button onClick={addToCart}>{!inStock ? t("outOfStock") : t("addToCart")}</Button>
             </div>
           </div>
         </Transition>

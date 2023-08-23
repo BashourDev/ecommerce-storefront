@@ -7,6 +7,7 @@ import Input from "@modules/common/components/input"
 import Modal from "@modules/common/components/modal"
 import Plus from "@modules/common/icons/plus"
 import Spinner from "@modules/common/icons/spinner"
+import { useTranslations } from "next-intl"
 import React, { useState } from "react"
 import { useForm } from "react-hook-form"
 
@@ -27,6 +28,8 @@ const AddAddress: React.FC = () => {
   const { state, open, close } = useToggleState(false)
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState<string | undefined>(undefined)
+
+  const t = useTranslations("AccountAddresses.modal")
 
   const { refetchCustomer } = useAccount()
   const {
@@ -79,7 +82,7 @@ const AddAddress: React.FC = () => {
       })
       .catch(() => {
         setSubmitting(false)
-        setError("Failed to add address, please try again.")
+        setError(t("failedToAddAddress"))
       })
   })
 
@@ -89,64 +92,64 @@ const AddAddress: React.FC = () => {
         className="border border-gray-200 p-5 min-h-[220px] h-full w-full flex flex-col justify-between"
         onClick={open}
       >
-        <span className="text-base-semi">New address</span>
+        <span className="text-base-semi">{t("newAddress")}</span>
         <Plus size={24} />
       </button>
 
       <Modal isOpen={state} close={handleClose}>
-        <Modal.Title>Add address</Modal.Title>
+        <Modal.Title>{t("addAddress")}</Modal.Title>
         <Modal.Body>
           <div className="grid grid-cols-1 gap-y-2">
             <div className="grid grid-cols-2 gap-x-2">
               <Input
-                label="First name"
+                label={t("firstNameLabel")}
                 {...register("first_name", {
-                  required: "First name is required",
+                  required: t("firstNameRequired"),
                 })}
                 required
                 errors={errors}
                 autoComplete="given-name"
               />
               <Input
-                label="Last name"
+                label={t("lastNameLabel")}
                 {...register("last_name", {
-                  required: "Last name is required",
+                  required: t("lastNameRequired"),
                 })}
                 required
                 errors={errors}
                 autoComplete="family-name"
               />
             </div>
-            <Input label="Company" {...register("company")} errors={errors} />
+            <Input label={t("companyLabel")} {...register("company")} errors={errors} />
             <Input
-              label="Address"
+              label={t("addressLabel")}
               {...register("address_1", {
-                required: "Address is required",
+                required: t("addressRequired"),
               })}
               required
               errors={errors}
               autoComplete="address-line1"
             />
             <Input
-              label="Apartment, suite, etc."
+              label={t("address2Label")}
               {...register("address_2")}
               errors={errors}
               autoComplete="address-line2"
             />
             <div className="grid grid-cols-[144px_1fr] gap-x-2">
               <Input
-                label="Postal code"
+                label={t("postalCodeLabel")}
                 {...register("postal_code", {
-                  required: "Postal code is required",
+                  required: t("postalCodeRequired"),
                 })}
                 required
                 errors={errors}
                 autoComplete="postal-code"
               />
               <Input
-                label="City"
+                label={t("cityLabel")}
                 {...register("city", {
-                  required: "City is required",
+                  required: t("cityRequired"),
                 })}
                 errors={errors}
                 required
@@ -154,17 +157,18 @@ const AddAddress: React.FC = () => {
               />
             </div>
             <Input
-              label="Province / State"
+              label={t("provinceOrStateLabel")}
               {...register("province")}
               errors={errors}
               autoComplete="address-level1"
             />
             <CountrySelect
+            placeholder={t("countrySelectPlaceholder")}
               {...register("country_code", { required: true })}
               autoComplete="country"
             />
             <Input
-              label="Phone"
+              label={t("phoneLabel")}
               {...register("phone")}
               errors={errors}
               autoComplete="phone"
@@ -179,10 +183,10 @@ const AddAddress: React.FC = () => {
             className="!bg-gray-200 !text-gray-900 !border-gray-200 min-h-0"
             onClick={handleClose}
           >
-            Cancel
+            {t("cancelButton")}
           </Button>
           <Button className="min-h-0" onClick={submit} disabled={submitting}>
-            Save
+            {t("saveButton")}
             {submitting && <Spinner />}
           </Button>
         </Modal.Footer>

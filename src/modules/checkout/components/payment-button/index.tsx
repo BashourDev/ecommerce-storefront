@@ -6,6 +6,7 @@ import { OnApproveActions, OnApproveData } from "@paypal/paypal-js"
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js"
 import { useElements, useStripe } from "@stripe/react-stripe-js"
 import { useCart } from "medusa-react"
+import { useTranslations } from "next-intl"
 import React, { useEffect, useState } from "react"
 
 type PaymentButtonProps = {
@@ -15,7 +16,7 @@ type PaymentButtonProps = {
 const PaymentButton: React.FC<PaymentButtonProps> = ({ paymentSession }) => {
   const [notReady, setNotReady] = useState(true)
   const { cart } = useCart()
-
+  const t = useTranslations("CheckoutSummary");
   useEffect(() => {
     setNotReady(true)
 
@@ -54,7 +55,7 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({ paymentSession }) => {
         <PayPalPaymentButton notReady={notReady} session={paymentSession} />
       )
     default:
-      return <Button disabled>Select a payment method</Button>
+      return <Button disabled>{t("selectAPaymentMethod")}</Button>
   }
 }
 
@@ -70,6 +71,7 @@ const StripePaymentButton = ({
   const [errorMessage, setErrorMessage] = useState<string | undefined>(
     undefined
   )
+  const t = useTranslations("CheckoutSummary");
 
   const { cart } = useCart()
   const { onPaymentCompleted } = useCheckout()
@@ -151,7 +153,7 @@ const StripePaymentButton = ({
         disabled={submitting || disabled || notReady}
         onClick={handlePayment}
       >
-        {submitting ? <Spinner /> : "Checkout"}
+        {submitting ? <Spinner /> : t("checkout")}
       </Button>
       {errorMessage && (
         <div className="text-red-500 text-small-regular mt-2">
@@ -222,6 +224,7 @@ const PayPalPaymentButton = ({
 
 const ManualTestPaymentButton = ({ notReady }: { notReady: boolean }) => {
   const [submitting, setSubmitting] = useState(false)
+  const t = useTranslations("CheckoutSummary");
 
   const { onPaymentCompleted } = useCheckout()
 
@@ -235,7 +238,7 @@ const ManualTestPaymentButton = ({ notReady }: { notReady: boolean }) => {
 
   return (
     <Button disabled={submitting || notReady} onClick={handlePayment}>
-      {submitting ? <Spinner /> : "Checkout"}
+      {submitting ? <Spinner /> : t("checkout")}
     </Button>
   )
 }

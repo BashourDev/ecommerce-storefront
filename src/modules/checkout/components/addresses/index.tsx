@@ -4,8 +4,10 @@ import Checkbox from "@modules/common/components/checkbox"
 import Spinner from "@modules/common/icons/spinner"
 import BillingAddress from "../billing_address"
 import ShippingAddress from "../shipping-address"
+import { useTranslations } from "next-intl"
 
 const Addresses = () => {
+  const t = useTranslations("CheckoutForm.Addresses")
   const {
     sameAsBilling: { state: checked, toggle: onChange },
     editAddresses: { state: isEdit, toggle: setEdit },
@@ -19,14 +21,14 @@ const Addresses = () => {
         <div className="bg-gray-900 w-8 h-8 rounded-full text-white flex justify-center items-center text-sm">
           1
         </div>
-        <h2>Shipping address</h2>
+        <h2>{t("shippingAddress")}</h2>
       </div>
       {isEdit ? (
         <div className="px-8 pb-8">
           <ShippingAddress />
           <div className="mt-6">
             <Checkbox
-              label="Same as billing address"
+              label={t("sameAsBillingAddress")}
               checked={checked}
               onChange={onChange}
             />
@@ -37,7 +39,7 @@ const Addresses = () => {
                 <div className="bg-gray-900 w-8 h-8 rounded-full text-white flex justify-center items-center font-mono text-sm">
                   2
                 </div>
-                <h2>Billing address</h2>
+                <h2>{t("billingAddress")}</h2>
               </div>
               <BillingAddress />
             </div>
@@ -46,7 +48,7 @@ const Addresses = () => {
             className="max-w-[200px] mt-6"
             onClick={handleSubmit(setAddresses)}
           >
-            Continue to delivery
+            {t("continueToDelivery")}
           </Button>
         </div>
       ) : (
@@ -83,12 +85,12 @@ const Addresses = () => {
                         <div className="flex items-center justify-center border border-gray-700 bg-gray-100 w-4 h-4">
                           ✓
                         </div>
-                        <span>Same as billing address</span>
+                        <span>{t("sameAsBillingAddress")}</span>
                       </div>
                     )}
                   </div>
                   <div>
-                    <button onClick={setEdit}>Edit</button>
+                    <button onClick={setEdit}>{t("edit")}</button>
                   </div>
                 </div>
               </div>
@@ -104,7 +106,7 @@ const Addresses = () => {
                 <div className="bg-gray-900 w-8 h-8 rounded-full text-white flex justify-center items-center font-mono text-sm">
                   2
                 </div>
-                <h2>Billing address</h2>
+                <h2>{t("billingAddress")}</h2>
               </div>
               <div className="bg-gray-50 px-8 py-6 text-small-regular">
                 {cart && cart.billing_address ? (
@@ -135,7 +137,7 @@ const Addresses = () => {
                         </div>
                       </div>
                       <div>
-                        <button onClick={setEdit}>Edit</button>
+                        <button onClick={setEdit}>{t("edit")}</button>
                       </div>
                     </div>
                   </div>

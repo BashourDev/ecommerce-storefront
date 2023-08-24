@@ -5,8 +5,11 @@ import Link from "next/link"
 import CheckoutLoader from "../components/checkout-loader"
 import CheckoutForm from "./checkout-form"
 import CheckoutSummary from "./checkout-summary"
+import { useLocale, useTranslations } from "next-intl"
 
 const CheckoutTemplate = () => {
+  const t = useTranslations("CheckoutTemplate");
+  const locale = useLocale()
   return (
     <CheckoutProvider>
       <div className="bg-gray-100 relative small:min-h-screen">
@@ -17,11 +20,11 @@ const CheckoutTemplate = () => {
               className="text-small-semi text-gray-700 flex items-center gap-x-2 uppercase flex-1 basis-0"
             >
               <>
-                <ChevronDown className="rotate-90" size={16} />
+                <ChevronDown className={locale === "en"?"rotate-90":"-rotate-90"} size={16} />
                 <span className="mt-px hidden small:block">
-                  Back to shopping cart
+                  {t("backToShoppingCart")}
                 </span>
-                <span className="mt-px block small:hidden">Back</span>
+                <span className="mt-px block small:hidden">{t("back")}</span>
               </>
             </Link>
             <Link href="/" className="text-xl-semi">
@@ -37,9 +40,9 @@ const CheckoutTemplate = () => {
             <CheckoutSummary />
           </div>
         </div>
-        <div className="py-4 w-full flex items-center justify-center">
+        {/* <div className="py-4 w-full flex items-center justify-center">
           <MedusaCTA />
-        </div>
+        </div> */}
       </div>
     </CheckoutProvider>
   )

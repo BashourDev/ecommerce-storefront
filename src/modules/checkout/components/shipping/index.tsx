@@ -9,6 +9,7 @@ import { formatAmount, useCart, useCartShippingOptions } from "medusa-react"
 import React, { useEffect, useMemo } from "react"
 import { Controller, useForm } from "react-hook-form"
 import StepContainer from "../step-container"
+import { useTranslations } from "next-intl"
 
 type ShippingOption = {
   value?: string
@@ -94,13 +95,15 @@ const Shipping: React.FC<ShippingProps> = ({ cart }) => {
     sameAsBilling: { state: sameBilling },
   } = useCheckout()
 
+  const t = useTranslations("CheckoutForm.Delivery")
+
   return (
     <StepContainer
       index={sameBilling ? 2 : 3}
-      title="Delivery"
+      title={t("title")}
       closedState={
         <div className="px-8 pb-8 text-small-regular">
-          <p>Enter your address to see available delivery options.</p>
+          <p>{t("subtitle")}.</p>
         </div>
       }
     >

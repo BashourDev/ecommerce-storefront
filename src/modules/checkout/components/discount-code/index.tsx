@@ -7,6 +7,7 @@ import { formatAmount, useCart, useUpdateCart } from "medusa-react"
 import React, { useMemo } from "react"
 import { useForm } from "react-hook-form"
 import { useMutation } from "@tanstack/react-query"
+import { useTranslations } from "next-intl"
 
 type DiscountFormValues = {
   discount_code: string
@@ -26,7 +27,7 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
       return medusaClient.carts.deleteDiscount(payload.cartId, payload.code)
     }
   )
-
+  const t = useTranslations("DiscountCode");
   const appliedDiscount = useMemo(() => {
     if (!discounts || !discounts.length) {
       return undefined
@@ -42,7 +43,7 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
         })}`
 
       default:
-        return "Free shipping"
+        return t("freeShipping")
     }
   }, [discounts, region])
 
@@ -91,13 +92,13 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
   return (
     <div className="w-full bg-white flex flex-col">
       <div className="mb-4">
-        <h3 className="text-base-semi">Discount</h3>
+        <h3 className="text-base-semi">{t("discount")}</h3>
       </div>
       <div className="text-small-regular">
         {appliedDiscount ? (
           <div className="flex items-center justify-between">
             <div>
-              <span>Code: </span>
+              <span>{t("code")}: </span>
               <span className="font-semibold">{appliedDiscount}</span>
             </div>
             <div>
@@ -107,7 +108,7 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
                 disabled={isLoading}
               >
                 <Trash size={16} />
-                <span className="sr-only">Remove gift card from order</span>
+                <span className="sr-only">{t("removeGiftCard")}</span>
               </button>
             </div>
           </div>
@@ -115,9 +116,9 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
           <form onSubmit={handleSubmit(onApply)} className="w-full">
             <div className="grid grid-cols-[1fr_80px] gap-x-2">
               <Input
-                label="Code"
+                label={t("codeLabel")}
                 {...register("discount_code", {
-                  required: "Code is required",
+                  required: t("codeRequired"),
                 })}
                 errors={errors}
               />
@@ -127,7 +128,7 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
                   disabled={isLoading}
                   isLoading={isLoading}
                 >
-                  Apply
+                  {t("apply")}
                 </Button>
               </div>
             </div>

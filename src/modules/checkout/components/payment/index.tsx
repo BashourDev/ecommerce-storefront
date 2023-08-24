@@ -3,6 +3,7 @@ import Spinner from "@modules/common/icons/spinner"
 import { useEffect } from "react"
 import PaymentContainer from "../payment-container"
 import StepContainer from "../step-container"
+import { useTranslations } from "next-intl"
 
 const Payment = () => {
   const {
@@ -33,13 +34,15 @@ const Payment = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cart])
 
+  const t = useTranslations("CheckoutForm.Payment")
+
   return (
     <StepContainer
-      title="Payment"
+      title={t("title")}
       index={isSame ? 3 : 4}
       closedState={
         <div className="px-8 pb-8 text-small-regular">
-          <p>Enter your address to see available payment options.</p>
+          <p>{t("subtitle")}</p>
         </div>
       }
     >

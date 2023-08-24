@@ -200,8 +200,86 @@
     "orderSummary": "ملخص الطلبية",
     "subtotal": "المجموع الجزئي",
     "discount": "الحسم",
+    "giftCard": "بطاقة هدية",
     "shipping": "الشحن",
     "taxes": "الضرائب",
     "total": "المجموع الكامل"
+  },
+  "SignInPrompt": {
+    "alreadyHaveAnAcount": "لديك حساب بالفعل؟",
+    "subtitle": "قم بتسجيل الدخول للحصول على تجربة أفضل.",
+    "signIn": "تسجيل دخول"
+  },
+  "ItemsTemplate": {
+    "shoppingBag": "حقيبة التسوق"
+  },
+  "Summary": {
+    "goToCheckout": "اذهب إلى الدفع",
+    "subtotal": "المجموع الجزئي",
+    "discount": "الحسم",
+    "giftCard": "بطاقة هدية",
+    "shipping": "الشحن",
+    "taxes": "الضرائب",
+    "total": "المجموع الكامل"
+  },
+  "DiscountCode": {
+    "freeShipping": "شحن مجاني",
+    "discount": "الحسم",
+    "code": "الرمز",
+    "removeGiftCard": "إزالة بطاقة الهدية من الطلب",
+    "codeLabel": "الرمز",
+    "codeRequired": "الرمز مطلوب",
+    "apply": "تفعيل"
+  },
+  "CheckoutTemplate": {
+    "backToShoppingCart": "العودة إلى حقيبة التسوق",
+    "back": "رجوع"
+  },
+  "CheckoutForm": {
+    "Addresses": {
+      "shippingAddress": "عنوان الشحن",
+      "sameAsBillingAddress": "عنوان إرسال الفواتير ذاته",
+      "billingAddress": "عنوان إرسال الفواتير",
+      "continueToDelivery": "الانتقال إلى الشحن",
+      "edit": "تعديل",
+      "emailLabel": "البريد الإلكتروني",
+      "emailRequired": "البريد الإلكتروني مطلوب",
+      "firstNameLabel": "الاسم الأول",
+      "firstNameRequired": "الاسم الأول مطلوب",
+      "lastNameLabel": "الاسم الأخير",
+      "lastNameRequired": "الاسم الأخير مطلوب",
+      "companyLabel": "الشركة",
+      "addressLabel": "العنوان",
+      "addressRequired": "العنوان مطلوب",
+      "address2Label": "شقة، جناح، الخ.",
+      "postalCodeLabel": "الرمز البريدي",
+      "postalCodeRequired": "الرمز البريدي مطلوب",
+      "cityLabel": "المدينة",
+      "cityRequired": "المدينة مطلوبة",
+      "country": "الدولة",
+      "countryRequired": "الدولة مطلوبة",
+      "provinceOrStateLabel": "المقاطعة / الولاية",
+      "phoneLabel": "رقم الهاتف"
+    },
+    "Delivery": {
+      "title": "الشحن",
+      "subtitle": "أدخل عنوانك لمعرفة خيارات الشحن المتاحة."
+    },
+    "Payment": {
+      "title": "الدفع",
+      "subtitle": "أدخل عنوانك لرؤية خيارات الدفع المتاحة."
+    }
+  },
+  "CheckoutSummary": {
+    "selectAPaymentMethod": "اختار طريقة للدفع",
+    "checkout": "دفع"
+  },
+  "CheckoutGiftCard": {
+    "giftCard": "بطاقة هدية",
+    "code": "الرمز",
+    "removeGiftCard": "إزالة بطاقة الهدية من الطلب",
+    "codeLabel": "الرمز",
+    "codeRequired": "الرمز مطلوب",
+    "apply": "تفعيل"
   }
 }

@@ -200,8 +200,86 @@
     "orderSummary": "Order Summary",
     "subtotal": "Subtotal",
     "discount": "Discount",
+    "giftCard": "Gift card",
     "shipping": "Shipping",
     "taxes": "Taxes",
     "total": "Total"
+  },
+  "SignInPrompt": {
+    "alreadyHaveAnAcount": "Already have an account?",
+    "subtitle": "Sign in for a better experience.",
+    "signIn": "Sign in"
+  },
+  "ItemsTemplate": {
+    "shoppingBag": "Shopping Bag"
+  },
+  "Summary": {
+    "goToCheckout": "Go to checkout",
+    "subtotal": "Subtotal",
+    "discount": "Discount",
+    "giftCard": "Gift card",
+    "shipping": "Shipping",
+    "taxes": "Taxes",
+    "total": "Total"
+  },
+  "DiscountCode": {
+    "freeShipping": "Free shipping",
+    "discount": "Discount",
+    "code": "Code",
+    "removeGiftCard": "Remove gift card from order",
+    "codeLabel": "Code",
+    "codeRequired": "Code is required",
+    "apply": "Apply"
+  },
+  "CheckoutTemplate": {
+    "backToShoppingCart": "Back to shopping cart",
+    "back": "Back"
+  },
+  "CheckoutForm": {
+    "Addresses": {
+      "shippingAddress": "Shipping Address",
+      "sameAsBillingAddress": "Same as billing address",
+      "billingAddress": "Billing address",
+      "continueToDelivery": "Continue to delivery",
+      "edit": "Edit",
+      "emailLabel": "Email",
+      "emailRequired": "Email is required",
+      "firstNameLabel": "First Name",
+      "firstNameRequired": "First name is required",
+      "lastNameLabel": "Last Name",
+      "lastNameRequired": "Last name is required",
+      "companyLabel": "Company",
+      "addressLabel": "Address",
+      "addressRequired": "Address is required",
+      "address2Label": "Apartment, suite, etc.",
+      "postalCodeLabel": "Postal code",
+      "postalCodeRequired": "Postal code is required",
+      "cityLabel": "City",
+      "cityRequired": "City is required",
+      "country": "Country",
+      "countryRequired": "Country is required",
+      "provinceOrStateLabel": "Province / State",
+      "phoneLabel": "Phone"
+    },
+    "Delivery": {
+      "title": "Delivery",
+      "subtitle": "Enter your address to see available delivery options."
+    },
+    "Payment": {
+      "title": "Payment",
+      "subtitle": "Enter your address to see available payment options."
+    }
+  },
+  "CheckoutSummary": {
+    "selectAPaymentMethod": "Select a payment method",
+    "checkout": "Checkout"
+  },
+  "CheckoutGiftCard": {
+    "giftCard": "Gift card",
+    "code": "Code",
+    "removeGiftCard": "Remove gift card from order",
+    "codeLabel": "Code",
+    "codeRequired": "Code is required",
+    "apply": "Apply"
   }
 }
